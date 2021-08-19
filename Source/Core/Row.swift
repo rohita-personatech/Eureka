@@ -48,6 +48,18 @@ open class RowOf<T>: BaseRow where T: Equatable {
             }
         }
     }
+  
+    override var hiddenCache: Bool {
+      didSet {
+        guard let form = section?.form else { return }
+        guard let t = tag else { return }
+        if let rowObservers = form.rowObservers[t]?[.hidden] {
+          for rowObserver in rowObservers {
+            (rowObserver as? Hidable)?.evaluateHidden()
+          }
+        }
+      }
+    }
 
     /// The typed value of this row.
     open var value: T? {
