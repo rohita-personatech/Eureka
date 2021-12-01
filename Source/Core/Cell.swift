@@ -47,12 +47,12 @@ open class BaseCell: UITableViewCell, BaseCellType {
      Function that returns the FormViewController this cell belongs to.
      */
     public func formViewController() -> FormViewController? {
-        var responder: AnyObject? = self
+        var responder: UIResponder? = self
         while responder != nil {
             if let formVC = responder as? FormViewController {
               return formVC
             }
-            responder = responder?.next
+            responder = (responder as? UIResponder)?.next
         }
         return nil
     }
