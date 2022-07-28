@@ -233,7 +233,7 @@ let row  = SwitchRow("SwitchRow") { row in      // initializer
 
 * **onCellSelection()**
 
-	Called each time the user taps on the row and it gets selected.
+	Called each time the user taps on the row and it gets selected. Note that this will also get called for disabled rows so you should start your code inside this callback with something like `guard !row.isDisabled else { return }`
 
 * **cellSetup()**
 
@@ -1078,7 +1078,7 @@ $ pod install
 After you set up your `Package.swift` manifest file, you can add Eureka as a dependency by adding it to the dependencies value of your `Package.swift`.
 
 dependencies: [
-    .package(url: "https://github.com/xmartlabs/Eureka.git", from: "5.3.5")
+    .package(url: "https://github.com/xmartlabs/Eureka.git", from: "5.3.6")
 ]
 
 
