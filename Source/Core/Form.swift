@@ -160,6 +160,12 @@ public final class Form {
      }
      return false
     }
+ 
+    public func reset() {
+     rows.forEach {
+      $0.resetRowValue()
+     }
+    }
 }
 
 extension Form: Collection {

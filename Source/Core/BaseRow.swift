@@ -122,6 +122,8 @@ open class BaseRow: BaseRowType {
         self.tag = tag
     }
 
+    public func resetRowValue() {}
+ 
     /**
      Method that reloads the cell
      */

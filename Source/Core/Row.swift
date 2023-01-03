@@ -111,7 +111,7 @@ open class RowOf<T>: BaseRow where T: Equatable {
     }
     
     /// Resets the value of the row. Setting it's value to it's reset value.
-    public func resetRowValue() {
+    public override func resetRowValue() {
         value = resetValue
     }
 
