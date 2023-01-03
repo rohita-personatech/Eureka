@@ -142,7 +142,10 @@ open class RowOf<T>: BaseRow where T: Equatable {
         validationErrors.removeAll()
         rules.removeAll()
     }
-
+ 
+    public override var isRowValueChanged: Bool {
+     value != resetValue
+    }
 }
 
 /// Generic class that represents an Eureka row.
