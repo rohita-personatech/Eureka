@@ -313,7 +313,7 @@ public enum EurekaError: Error {
 *  A protocol implemented by FormViewController
 */
 public protocol FormViewControllerProtocol {
-    var tableView: SelfSizedTableView! { get }
+    var tableView: UITableView! { get }
 
     func beginEditing<T>(of: Cell<T>)
     func endEditing<T>(of: Cell<T>)
@@ -395,7 +395,7 @@ public struct InlineRowHideOptions: OptionSet {
 @objc(EurekaFormViewController)
 open class FormViewController: UIViewController, FormViewControllerProtocol, FormDelegate {
 
-    @IBOutlet public var tableView: SelfSizedTableView!
+    @IBOutlet public var tableView: UITableView!
 
     private lazy var _form: Form = { [weak self] in
         let form = Form()
@@ -457,7 +457,7 @@ open class FormViewController: UIViewController, FormViewControllerProtocol, For
         navigationAccessoryView.autoresizingMask = .flexibleWidth
 
         if tableView == nil {
-            tableView = SelfSizedTableView(frame: view.bounds, style: tableViewStyle)
+            tableView = UITableView(frame: view.bounds, style: tableViewStyle)
             tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             tableView.cellLayoutMarginsFollowReadableWidth = false
         }
@@ -1148,17 +1148,4 @@ extension FormViewControllerProtocol {
             tableView.scrollToRow(at: indexPath, at: destinationScrollPosition, animated: true)
         }
     }
-}
-
-public final class SelfSizedTableView: UITableView {
- override public var contentSize: CGSize {
-  didSet {
-   self.invalidateIntrinsicContentSize()
-  }
- }
-
- override public var intrinsicContentSize: CGSize {
-  layoutIfNeeded()
-  return CGSize(width: UIView.noIntrinsicMetric, height: contentSize.height)
- }
 }
